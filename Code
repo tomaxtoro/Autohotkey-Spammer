@@ -1,0 +1,56 @@
+#Requires AutoHotkey v1.1.33
+Gui +AlwaysOnTop
+Gui Font, s15
+Gui Add, Text  ,, WAS WOTSCH DU SPEMME?
+Gui Add, Edit  , vspam
+Gui Add, Button, gSpammen Default, START
+Gui Add, Button, gStop    x+m    , STOP
+Gui Add, Button, gSettings y10 x450,Settings
+Gui Show, x200 y200, Spam
+Return
+
+
+Settings:
+Gui 2:Default
+Gui -SysMenu
+Gui +AlwaysOnTop
+Gui Font, s13
+Gui, add, Text,, WIE SCHNELL DU DASS WOLLE?
+Gui, add, Text,y60 x10, Millisekunden:
+Gui, add, Edit  , vSpeed
+Gui, add, button, gSave, Speichern
+Gui, show, y200 x100, Verysettings
+return
+
+
+Save:
+Gui 2:Submit, NoHide
+Gui 2:destroy
+return
+
+
+Spammen:
+Gui Submit, NoHide
+WinActivate % winTitle
+SetTimer, SpamTimer,% Speed
+Return
+
+
+SpamTimer:
+Send % "{Enter}" spam
+Return
+
+
+Stop:
+SetTimer, SpamTimer, Off
+Return
+
+
+
+Esc::
+Exitapp
+
+Guiclose:
+Exitapp
+
+
